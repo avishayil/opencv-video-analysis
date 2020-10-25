@@ -1,0 +1,9 @@
+.venv/
+.idea/
+dataset/
+encodings.pickle
+LICENSE
+README.md
+.gitignore
+docker/
+scripts/

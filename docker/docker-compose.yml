@@ -1,0 +1,20 @@
+version: '3.7'
+
+services:
+  opencv-video-analysis:
+    image: avishayil/opencv-video-analysis:latest
+    restart: always
+    ports:
+      - "5000:5000"
+    volumes:
+      - type: bind
+        source: "${ENCODINGS_FILE_PATH}"
+        target: /data/encodings/encodings.pickle
+        read_only: false
+      - type: bind
+        source: "${DATASET_FOLDER_PATH}"
+        target: /data/dataset
+        read_only: false
+    environment:
+      - LOGLEVEL=${LOGLEVEL}
+      - MODEL=${MODEL}
