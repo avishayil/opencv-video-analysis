@@ -63,6 +63,9 @@ def get_video_analysis():
     try:
         urlretrieve(url, 'video.mp4')
         output = analyze_video('video.mp4')
+        f = open("last_video_person.txt", "w")
+        f.write(output)
+        f.close()
     except Exception, e:
         log.error('Failed to retrieve or analyze video: ' + str(e))
         output = 'Failed to retrieve or analyze video'
@@ -79,12 +82,37 @@ def get_photo_analysis():
     try:
         urlretrieve(url, 'photo.jpg')
         output = analyze_photo('photo.jpg')
+        f = open("last_photo_person.txt", "w")
+        f.write(output)
+        f.close()
     except Exception, e:
         log.error('Failed to retrieve or analyze photo: ' + str(e))
         output = 'Failed to retrieve or analyze photo'
 
     return {'response': output}
 
+
+@app.route('/get_latest_video_person', methods=['GET'])
+def get_latest_video_person():
+    try:
+        f = open("last_video_person.txt", "r")
+        output = f.read()
+    except Exception, e:
+        log.error('Failed to get latest person: ' + str(e))
+        output = 'Failed to get latest person'
+
+    return {'response': output}
+
+@app.route('/get_latest_photo_person', methods=['GET'])
+def get_latest_photo_person():
+    try:
+        f = open("last_photo_person.txt", "r")
+        output = f.read()
+    except Exception, e:
+        log.error('Failed to get latest person: ' + str(e))
+        output = 'Failed to get latest person'
+
+    return {'response': output}
 
 @app.route('/analyze_photo_data_url', methods=['POST'])
 def get_data_url_analysis():
@@ -105,8 +133,8 @@ def get_data_url_analysis():
     return {'response': output}
 
 
-# if __name__ == '__main__':
-#     app.run(host='0.0.0.0', threaded=True, debug=True)
-
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', threaded=True)
+    app.run(host='0.0.0.0', threaded=True, debug=True)
+
+# if __name__ == '__main__':
+#     app.run(host='0.0.0.0', threaded=True)

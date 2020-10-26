@@ -144,3 +144,5 @@ encodings.pickle
 video.mp4
 temp.jpg
 .python-version
+last_video_person.txt
+last_photo_person.txt

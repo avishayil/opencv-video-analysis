@@ -23,6 +23,8 @@ Use OpenCV-Python and Flask to create an application that collects photos from t
     ```
     export ENCODINGS_FILE_PATH="encodings.pickle" # The path to the file must exist (create an empty file with `touch encodings.pickle`)
     export DATASET_FOLDER_PATH="dataset" # The path to the folder must exist (create an empty folder with `mkdir -p dataset`)
+    export MODEL="hog" # Training model. `hog` for using CPU, `cnn` for using GPU.
+    export LOGLEVEL="INFO" # Logging level
     python backend/app.py
     ```
    
